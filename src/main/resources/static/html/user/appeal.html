@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我要申述</title>
+
+    <link href="/bootstrap-3.4.1-dist/css/bootstrap.css" rel="stylesheet">
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+</head>
+
+<style>
+
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+    .table>tbody>tr>td{
+        border: none;
+    }
+
+    td input,td select{
+        width: 200px;
+    }
+
+</style>
+
+<body>
+
+<div class="col-xs-10 container"
+     style="margin: 20px 0 0 20px; padding: 50px 0;height: 500px; border: solid 1px #8c8c8c; ">
+
+    <div class="col-xs-1"></div>
+
+    <div class="col-xs-8">
+
+        <table class="table">
+            <tr>
+                <td>
+                    <label>常登录地点:</label>
+                </td>
+                <td>
+                    <input type="text" id="locality" placeholder="选择常登录地点">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>出生时间:</label>
+                </td>
+                <td>
+                    <input type="date" id="birthday" placeholder="介绍一下你自己吧">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-xs-3">
+                    <label>曾经用过的密码:</label>
+                </td>
+                <td>
+                    <p><input type="password" id="password1" placeholder="请输入曾经用过的密码"></p>
+                    <p><input type="password" id="password2" placeholder="请输入曾经用过的密码"></p>
+                    <p><input type="password" id="password3" placeholder="请输入曾经用过的密码"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>绑定手机号码:</label>
+                </td>
+                <td>
+                    <input type="date" id="telephone" placeholder="请输入绑定的手机号">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>绑定邮箱:</label>
+                </td>
+                <td>
+                    <input type="email" id="email" placeholder="请输入绑定的邮箱地址">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="btn btn-default" id="submit" style="margin: 20px 0 0 60px; background-color: #3e8f3e; ">提交申述</button>
+                </td>
+            </tr>
+
+        </table>
+
+
+    </div>
+
+</div>
+
+</div>
+
+
+</body>
+
+<script type="text/javascript" src="/js/user/forgetPassword.js" charset="UTF-8"></script>
+
+</html>

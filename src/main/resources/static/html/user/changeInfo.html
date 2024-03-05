@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改个人信息</title>
+
+    <link href="/bootstrap-3.4.1-dist/css/bootstrap.css" rel="stylesheet">
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+
+</head>
+
+<style>
+
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+    .table>tbody>tr>td{
+        border: none;
+    }
+
+    td input,td select{
+        width: 200px;
+    }
+
+</style>
+
+<body>
+
+<div class="col-xs-10 container"
+     style="margin: 20px 0 0 20px; padding: 50px 0;height: 500px; border: solid 1px #8c8c8c; ">
+
+    <div class="col-xs-1"></div>
+
+    <div class="col-xs-8">
+
+        <table class="table">
+            <tr>
+                <td class="col-xs-2">
+                    <label>用户名:</label>
+                </td>
+                <td>
+                    <input type="text" id="userName" placeholder="请输入用户名">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>性别:</label>
+                </td>
+                <td>
+                    <select class="input" id="sex">
+                        <option selected="selected" disabled="disabled">未设置</option>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>生日:</label>
+                </td>
+                <td>
+                    <input type="date" id="birthday" placeholder="请输入生日">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>个人介绍:</label>
+                </td>
+                <td>
+                    <input type="text" id="introduce" placeholder="介绍一下你自己吧">
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="btn btn-default" id="submit" style="margin: 20px 0 0 60px; background-color: #3e8f3e; ">确认修改</button>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+</div>
+
+
+</body>
+
+<script type="text/javascript" src="/js/user/changeInfo.js" charset="UTF-8"></script>
+
+</html>

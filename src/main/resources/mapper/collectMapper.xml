@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.jxnu.mapper.CollectMapper">
+
+    <resultMap id="collect" type="collect">
+        <id property="collectId" column="collect_id"></id>
+        <id property="userId" column="user_id"></id>
+        <collection property="collectMerchandises" ofType="collectMerchandise">
+            <id property="collectId" column="collect_id"></id>
+            <id property="merchandiseId" column="merchandise_id"></id>
+            <collection property="merchandise" ofType="merchandise">
+                <id property="merchandiseId" column="merchandise_id"></id>
+                <result property="storeId" column="store_id"></result>
+                <result property="merchandiseName" column="merchandise_name"></result>
+                <result property="merchandiseMainImage" column="merchandise_main_image"></result>
+                <result property="merchandiseParticularsImage" column="merchandise_ particulars_image"></result>
+                <result property="merchandiseIntroduce" column="merchandise_introduce"></result>
+                <result property="merchandiseParameter" column="merchandise_parameter"></result>
+                <result property="merchandiseSpecifications" column="merchandise_specifications"></result>
+                <result property="merchandisePrice" column="merchandise_price"></result>
+                <result property="merchandiseQuantity" column="merchandise_quantity"></result>
+                <result property="merchandiseState" column="merchandise_state"></result>
+            </collection>
+        </collection>
+        <collection property="collectStores" ofType="collectStore">
+            <id property="collectId" column="collect_id"></id>
+            <id property="storeId" column="store_id"></id>
+            <collection property="store" ofType="store">
+                <id property="storeId" column="store_id"></id>
+                <result property="userId" column="user_id"></result>
+                <result property="storeName" column="store_name"></result>
+                <result property="storeImage" column="store_image"></result>
+                <result property="storeIntroduce" column="store_introduce"></result>
+                <result property="saleQuantity" column="sale_quantity"></result>
+                <result property="fans" column="fans"></result>
+                <result property="credit" column="credit"></result>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <sql id="selectDefault">
+        select *
+        from collect
+    </sql>
+
+    <select id="queryCollectByUserId" resultMap="collect">
+        <!--引用已定义的默认sql语句-->
+        <include refid="selectDefault"></include>
+        <where>user_id= #{userId}</where>
+    </select>
+
+    <select id="queryCollectMerchandiseByUserId" resultMap="collect">
+        <!--引用已定义的默认sql语句-->
+        <include refid="selectDefault"></include>
+        left outer join `collect_merchandise` on `collect`.collect_id = `collect_merchandise`.collect_id
+        left outer join `merchandise` on `collect_merchandise`.merchandise_id = `merchandise`.merchandise_id
+        <where>`collect`.user_id= #{userId}</where>
+    </select>
+
+    <select id="findCollectMerchandiseByStateAndMerchandiseName" resultMap="collect">
+        <!--引用已定义的默认sql语句-->
+        <include refid="selectDefault"></include>
+        left outer join `collect_merchandise` on `collect`.collect_id = `collect_merchandise`.collect_id
+        left outer join `merchandise` on `collect_merchandise`.merchandise_id = `merchandise`.merchandise_id
+        <where>`collect`.user_id= #{param1} and `merchandise`.merchandise_name like #{param2}</where>
+    </select>
+
+    <select id="findCollectMerchandiseByStateAndMerchandiseIntroduce" resultMap="collect">
+        <!--引用已定义的默认sql语句-->
+        <include refid="selectDefault"></include>
+        left outer join `collect_merchandise` on `collect`.collect_id = `collect_merchandise`.collect_id
+        left outer join `merchandise` on `collect_merchandise`.merchandise_id = `merchandise`.merchandise_id
+        <where>`collect`.user_id= #{param1} and `merchandise`.merchandise_introduce like #{param2}</where>
+    </select>
+
+    <select id="queryCollectStoreByUserId" resultMap="collect">
+        <!--引用已定义的默认sql语句-->
+        <include refid="selectDefault"></include>
+        left outer join `collect_store` on `collect`.collect_id = `collect_store`.collect_id
+        left outer join `store` on `collect_store`.store_id = `store`.store_id
+        <where>`collect`.user_id= #{userId}</where>
+    </select>
+
+    <insert id="insertCollect" parameterType="collect">
+        insert into `collect` (user_id)
+        values (#{userId})
+    </insert>
+
+</mapper>

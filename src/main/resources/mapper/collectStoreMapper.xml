@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.jxnu.mapper.CollectStoreMapper">
+
+    <resultMap id="collectStore" type="collectStore">
+        <id property="collectId" column="collect_id"></id>
+        <id property="storeId" column="store_id"></id>
+        <id property="collectTime" column="collect_time"></id>
+        <collection property="store" ofType="store">
+            <id property="storeId" column="store_id"></id>
+            <result property="userId" column="user_id"></result>
+            <result property="storeName" column="store_name"></result>
+            <result property="storeImage" column="store_image"></result>
+            <result property="storeIntroduce" column="store_introduce"></result>
+            <result property="saleQuantity" column="sale_quantity"></result>
+            <result property="fans" column="fans"></result>
+            <result property="credit" column="credit"></result>
+        </collection>
+    </resultMap>
+
+    <sql id="selectDefault">
+        select *
+        from `collect_store`
+        order by `collect_store`.collect_time desc
+    </sql>
+
+    <select id="findCollectStore" resultMap="collectStore">
+        select *
+        from `collect_store`
+        <where>
+            collect_id = #{collectId} and store_id = #{storeId}
+        </where>
+        order by `collect_store`.collect_time desc
+    </select>
+
+    <insert id="insertCollectStore" parameterType="collectStore">
+        insert into `collect_store` (collect_id, store_id, collect_time)
+        values (#{collectId}, #{storeId}, #{collectTime})
+    </insert>
+
+    <delete id="deleteCollectStore" parameterType="collectStore">
+        delete
+        from `collect_store`
+        <where>
+            collect_id = #{collectId} and store_id = #{storeId}
+        </where>
+    </delete>
+
+
+</mapper>

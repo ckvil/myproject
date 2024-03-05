@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的订单</title>
+
+    <link href="/bootstrap-3.4.1-dist/css/bootstrap.css" rel="stylesheet">
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+
+</head>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        line-height: 20px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    #tabtop {
+        text-align: center;
+        font-size: 4px;
+        color: #3c3c3c;
+        background-color: #d6d6d6;
+    }
+
+     tr td:not(:nth-child(1),:nth-child(2)){
+         text-align: center;
+         margin: auto;
+     }
+
+    td img {
+        height: 80px;
+        margin-left: 30px;
+    }
+
+    td p{
+        margin-bottom: 0;
+    }
+
+    .orderImage{
+        width: 160px;
+    }
+
+    .merchandiseIntroduce {
+        display: -webkit-box;
+        white-space: normal;
+        width: 300px;
+        height: 40px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .orderMessage{
+        width: 300px;
+        font-size: 5px;
+        color: #3c763d;
+    }
+
+    .price span,.quantity span,.totalPrice span{
+        line-height: 90px;
+    }
+
+    .orderState p:nth-child(1) span{
+        line-height: 70px;
+    }
+
+    .orderState p:nth-child(2) a{
+        line-height: 20px;
+        size: 8px;
+    }
+
+    .price,.totalPrice{
+        color: #d43f3a;
+    }
+
+    .quantity{
+        color: #4cae4c;
+    }
+
+    .orderOpera p{
+        line-height: 30px;
+    }
+
+
+
+</style>
+
+<body>
+
+<div class="row" style="margin: 30px 0 0 0; padding: 0;">
+    <div class="row">
+        <div class="btn-group col-xs-6" role="group" aria-label="..." id="orderState">
+            <button type="button" class="btn btn-default" value=""
+                    style="margin-right: 10px; margin-left: 5px; font-size: 8px">所有订单
+            </button>
+            <button type="button" class="btn btn-default" value="已取消" style="margin-right: 10px; font-size: 8px">已取消</button>
+            <button type="button" class="btn btn-default" value="待付款" style="margin-right: 10px; font-size: 8px">待付款</button>
+            <button type="button" class="btn btn-default" value="待发货" style="margin-right: 10px; font-size: 8px">待发货</button>
+            <button type="button" class="btn btn-default" value="待收货" style="margin-right: 10px; font-size: 8px">待收货</button>
+            <button type="button" class="btn btn-default" value="待评价" style="margin-right: 10px; font-size: 8px">待评价</button>
+            <button type="button" class="btn btn-default" value="售后中" style="margin-right: 10px; font-size: 8px">售后中</button>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+
+        <div class="col-xs-11" id="orderTable">
+            <table class="table" style=" border: solid 1px #a6a6a6;">
+                <tr id="tabtop">
+                    <td colspan="2">
+                        <span>商品信息</span>
+                    </td>
+                    <td>
+                        <span>单价</span>
+                    </td>
+                    <td>
+                        <span>数量</span>
+                    </td>
+                    <td>
+                        <span>金额</span>
+                    </td>
+                    <td>
+                        <span>交易状态</span>
+                    </td>
+                    <td>
+                        <span>操作</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="orderImage">
+                        <img class="img-rounded" src="/image/图片/眼镜/爱淘宝pc-搜你喜欢/pic_001.jpg">
+                    </td>
+                    <td class="orderMessage">
+                        <div class="row">
+                            <p class="merchandiseIntroduce row">明月眼镜官方旗舰PMC高透光超薄近视1.60网上配镜1.71眼镜片2片</p>
+                            <p class="row">规格：1.71 非球面 银白色 明月镜片</p>
+                            <p class="row">2022-01-04 12:57:54</p>
+                            <p class="row">订单号102345600022</p>
+                        </div>
+                    </td>
+                    <td class="price">
+                        <span> ¥158.9 </span>
+                    </td>
+                    <td class="quantity">
+                        <span> 1 </span>
+                    </td>
+                    <td class="totalPrice">
+                        <span> ¥158.9 </span>
+                    </td>
+                    <td class="orderState">
+                        <p><span> 待发货 </span></p>
+                        <p><a> 查看 </a></p>
+                    </td>
+                    <td class="orderOpera">
+                        <div class="row">
+                            <p><a href="/test.html" target="right">收藏</a></p>
+                            <p><a href="/test.html" target="right">再次购买</a></p>
+                            <p><a href="/test.html" target="right">删除</a></p>
+                        </div>
+                    </td>
+                </tr>
+
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div style="height: 150px"></div>
+
+
+</body>
+
+<script type="text/javascript" src="/js/order/myOrder.js" charset="UTF-8"></script>
+
+</html>

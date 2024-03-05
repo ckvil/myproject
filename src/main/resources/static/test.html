@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/bootstrap-3.4.1-dist/css/bootstrap.css" rel="stylesheet">
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        iframe {
+            width: 100%;
+            margin: 0 0 1em;
+            border: 0;
+
+        }
+
+        .wrap {
+            width: 200px;
+            height: 300px;
+        }
+
+        .content {
+            width: 100%;
+        }
+
+        .text-ellipsis {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 3;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+<div id="back">
+    <a class="button border-main button-little backLastPage"><span
+            class="icon-mail-reply (alias)"></span> 返回 </a>
+</div>
+
+
+<div class="col-xs-2" style="height: 100px; background-color: #4cae4c">
+    <!--<div class="wrap">
+        <div class="content">
+            测试数据：css多行文本超出长度显示省略号，多行文本超出长度显示省略号&#45;&#45;明天也要努力
+        </div>
+        <hr>
+        <div class="content text-ellipsis">
+            测试数据：css多行文本超出长度显示省略号，多行文本超出长度显示省略号多行文本超出长度显示省略号多行文本超出长度显示省略号&#45;&#45;明天也要努力
+        </div>
+    </div>
+
+    <div style=" float: left; font-size: 5px;padding: 0; width: 128px; height: 35px; ">
+        <a style="width:100%;overflow:hidden; text-overflow: ellipsis; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical;">专业配镜江西师范大学青山湖校区师大眼镜专业配镜江西师范大学青山湖校区师大眼镜</a>
+    </div>
+
+
+
+
+
+    <div style="width: 100px; height: 100px;background-color: #4cae4c;display: -webkit-box;  /*弹性伸缩盒子*/
+            -webkit-box-orient: vertical;/*垂直排列*/
+            line-clamp: 2;
+            -webkit-line-clamp: 2;  /*只显示2行*/
+            overflow: hidden;   /*溢出隐藏*/
+            text-overflow: ellipsis;">
+
+        <a style="width: 100px; height: 100px;">adsddddddddddddddddddddddddddddddddjpojdpqowjdoqpdjqpwodjqodqjodjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj</a>
+
+    </div>
+
+
+    <div style="width: 100px; height: 100px;background-color: #4cae4c;">
+        <a style="display: -webkit-box;
+  -webkit-box-orient: vertical;overflow:hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  ">AAAAAAaadsddddddddddddddddddddddddddddddddjpojdpqowjdoqpdjqpwodjqodqjodjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj</a>
+
+    </div>
+
+    <div style="width: 100px; height: 100px;background-color: #4cae4c; ">
+        <a style="width: 100px; height: 100px; white-space: normal;line-clamp: 2;-webkit-line-clamp: 2; overflow: hidden; text-overflow: ellipsis; ">哥我待会赫伯特热污染无法和研究具有fwfwfwfere我能的全家都去接地气去地区</a>
+
+    </div>
+
+    <div style="width: 100px; height: 100px;background-color: #4cae4c;
+             white-space: pre-wrap; overflow:hidden;text-overflow: ellipsis;">
+
+        <a style="width: 100px; height: 100px;">adsddddddddddddddddddddddddddddddddjpojdpqowjdoqpdjqpwodjqodqjodjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj</a>
+
+    </div>-->
+
+</div>
+
+<div class="col-xs-10">
+
+    <!--    <iframe width="100%" height="100%" id="myiframe" src="test2.html"></iframe>-->
+
+</div>
+
+<a href="test2.html">test2</a>
+
+</body>
+
+<script>
+
+    // $("#myiframe").css("height", document.documentElement.clientHeight);
+
+    // 返回上一页
+    $("#back").on('click', '.backLastPage', function () {
+        alert("back~~");
+        window.history.back(-1);
+    })
+
+</script>
+
+
+</html>

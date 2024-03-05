@@ -1,0 +1,18 @@
+#title{
+    margin-right: 10px;
+}
+#indexImg{
+    margin-left: 20px;
+    height: 50px;
+}
+#indexTitle{
+    padding-left: -10px;
+    font-size: 20px;
+}
+#leftnav{
+    padding: 10px;
+    margin-top: 50px;
+}
+ul.nav.navbar-right{
+    margin-right: 10px;
+}

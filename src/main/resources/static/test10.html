@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="/js/jquery-3.6.0.min.js"></script>
+
+</head>
+
+<style>
+
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+
+</style>
+
+<script>
+    $(function () {
+        function calculateTotal() {
+            var total = 0;
+            $('input[type=checkbox]:checked').each(function () {
+                total += parseInt($(this).val());
+            })
+            $('#total').text(total);
+        }
+
+
+        //监听复选框的点击事件
+        $('input[type=checkbox]').on('click', function () {
+            calculateTotal();
+        })
+    })
+
+</script>
+
+<body>
+<h1>购物车</h1>
+<table>
+    <thead>
+    <tr>
+        <th>商品</th>
+        <th>价格</th>
+        <th>选择</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>苹果</td>
+        <td>10</td>
+        <td><input type="checkbox" name="item1" value="10"></td>
+    </tr>
+    <tr>
+        <td>香蕉</td>
+        <td>8</td>
+        <td><input type="checkbox" name="item2" value="8"></td>
+    </tr>
+    <tr>
+        <td>橙子</td>
+        <td>6</td>
+        <td><input type="checkbox" name="item3" value="6"></td>
+    </tr>
+    </tbody>
+</table>
+<p>总价：￥<span id="total">0</span></p>
+
+
+</body>
+</html>

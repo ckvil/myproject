@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购买商品</title>
+
+    <link href="/bootstrap-3.4.1-dist/css/bootstrap.css" rel="stylesheet">
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+
+</head>
+
+<style>
+    img {
+        width: 150px;
+        margin-left: 30px;
+    }
+</style>
+
+<body>
+
+<div class="row container" style="margin: 30px 0 0 50px; padding: 0;">
+
+    <div class="col-xs-10">
+        <div class="row" id="merchandise">
+
+            <div class="row form-group">
+                <div class="col-xs-3">
+                    <img src="/image/图片/眼镜/pic_001.jpg">
+                </div>
+                <div class="col-xs-9">
+                    <p class="row">明月眼镜</p>
+                    <p class="merchandiseIntroduce row">明月眼镜官方旗舰PMC高透光超薄近视1.60网上配镜1.71眼镜片2片</p>
+                    <p class="row">规格：
+                        <select class="input" id="sex">
+                            <option selected="selected" disabled="disabled">未设置</option>
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </p>
+                    <p class="row">单价：¥158.9</p>
+                    <p class="row">数量：<input type="number" placeholder="输入商品数量" value="1" min="1"
+                                             style="width: 50px; height: 20px;"></p>
+                    <p class="row">总价：¥158.9</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row" id="consignee">
+            <div class="row form-group">
+                <label for="name">收货人姓名</label>
+                <input type="text" class="form-control" id="name" placeholder="收货人姓名">
+            </div>
+            <div class="row form-group">
+                <label for="telephone">收货人联系方式</label>
+                <input type="text" class="form-control" id="telephone" placeholder="收货人联系方式">
+            </div>
+            <div class="row form-group">
+                <label for="addr">收货地址</label>
+                <input type="text" class="form-control" id="addr" placeholder="收货地址">
+            </div>
+            <div class="row form-group">
+                <label for="postalCode">邮政编码</label>
+                <input type="text" class="form-control" id="postalCode" placeholder="邮政编码">
+            </div>
+            <div class="row form-group">
+                <label for="consigneeRemark">买家备注</label>
+                <input type="text" class="form-control" id="consigneeRemark" placeholder="写下您的备注吧">
+            </div>
+            <div class="row form-group">
+                <div class="col-xs-4"></div>
+                <button type="submit" class="btn btn-default" id="submit"
+                        style="margin: 20px; background-color: #3e8f3e; ">
+                    确认订单
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<div style="height: 150px"></div>
+
+</body>
+
+<script type="text/javascript" src="/js/purchase/submitOrder.js" charset="UTF-8"></script>
+
+</html>

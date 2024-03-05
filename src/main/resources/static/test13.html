@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>聊天页面</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 监听输入框的回车事件
+            $('#input').on('keydown', function(event) {
+                if (event.which === 13) { // 如果按下回车键
+                    var message = $(this).val(); // 获取输入框中的消息
+                    if (message !== '') { // 如果消息不为空
+                        var html = '<div class="row"><div class="col-10 offset-2"><div class="bg-primary text-white p-2 rounded mb-2">' + message + '</div></div></div>'; // 创建一个消息气泡
+                        $('#messages').append(html); // 将气泡添加到消息列表中
+                        $(this).val(''); // 清空输入框
+                    }
+                }
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-10 offset-1">
+            <div class="card">
+                <div class="card-header bg-primary text-white">聊天室</div>
+                <div class="card-body" id="messages"></div>
+                <div class="card-footer">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="input" placeholder="在这里输入消息...">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">发送</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

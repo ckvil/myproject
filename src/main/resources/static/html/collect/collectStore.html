@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>收藏店铺</title>
+
+    <link href="/bootstrap-3.4.1-dist/css/bootstrap.css" rel="stylesheet">
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+
+</head>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    table {
+        width: 100%;
+        font-size: 12px;
+        border: solid 1px #a6a6a6;
+    }
+
+
+    #tabtop {
+        text-align: center;
+        font-size: 4px;
+        color: #3c763d;
+        background-color: #d6d6d6;
+    }
+
+    tr td:not(:nth-child(2)){
+        text-align: center;
+    }
+
+    .storeImage{
+        width: 100px;
+    }
+
+    .storeName p a{
+        font-size: 4px;
+    }
+
+
+    td img {
+        height: 40px;
+        margin-left: 30px;
+    }
+
+    td p{
+        margin-bottom: 0;
+    }
+
+    .collectOpera p{
+        font-size: 6px;
+    }
+
+
+
+</style>
+
+<body>
+
+<div class="row container" style="margin: 30px 0 0 0; padding: 0;">
+
+        <div class="col-xs-11">
+            <table class="table">
+                <tr id="tabtop">
+                    <td colspan="2">
+                        <span>店铺简介</span>
+                    </td>
+                    <td>
+                        <span>粉丝数量</span>
+                    </td>
+                    <td>
+                        <span>信誉度</span>
+                    </td>
+                    <td>
+                        <span>操作</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="storeImage">
+                        <img class="img-rounded" src="#">
+                    </td>
+                    <td class="storeName">
+                        <p> 师大眼镜店 </p>
+                        <p><a href="/test.html" target="right"> 进入店铺 </a></p>
+                    </td>
+                    <td class="fensQuantity">
+                        <span class="row">120w+</span>
+                    </td>
+                    <td class="creditworthiness">
+                        <span class="row">信誉良好</span>
+                    </td>
+
+                    <td class="collectOpera">
+                        <div class="row">
+                            <p><a href="/test.html" target="right">删除</a></p>
+                            <p><a href="/test.html" target="right">相似店铺</a></p>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+
+</div>
+
+
+<div style="height: 150px"></div>
+
+
+</body>
+
+<script type="text/javascript" src="/js/collect/collectStore.js" charset="UTF-8"></script>
+
+</html>

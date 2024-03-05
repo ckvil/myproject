@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+
+    /*微信二维码*/
+    .weixin{
+        position:relative;
+    }
+    .weixin::after{
+        content: url(image/sp20230412_103742_755.png);
+        position: absolute;
+        left: 20px;
+        top: 20px;
+        z-index: 99;
+        border: 2px solid #0095ba;
+        border-radius: 4px;
+        transform: scale(0);
+        opacity: 0;
+        -webkit-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+    }
+    .weixin:hover::after{
+        transform:scale(1);
+        opacity: 1;
+    }
+
+</style>
+
+<body>
+
+<a class="facebook weixin" href="javascript:">
+    <i class="fab fa-weixin">查看我的微信</i>
+</a>
+
+</body>
+</html>

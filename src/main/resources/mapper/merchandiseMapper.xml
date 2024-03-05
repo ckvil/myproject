@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.jxnu.mapper.MerchandiseMapper">
+
+    <resultMap id="merchandise" type="merchandise">
+        <id property="merchandiseId" column="merchandise_id"></id>
+        <result property="storeId" column="store_id"></result>
+        <result property="merchandiseName" column="merchandise_name"></result>
+        <result property="merchandiseMainImage" column="merchandise_main_image"></result>
+        <result property="merchandiseParticularsImage" column="merchandise_particulars_image"></result>
+        <result property="merchandiseIntroduce" column="merchandise_introduce"></result>
+        <result property="merchandiseParameter" column="merchandise_parameter"></result>
+        <result property="merchandiseSpecifications" column="merchandise_specifications"></result>
+        <result property="merchandisePrice" column="merchandise_price"></result>
+        <result property="merchandiseQuantity" column="merchandise_quantity"></result>
+        <result property="merchandiseState" column="merchandise_state"></result>
+        <result property="operaTime" column="opera_time"></result>
+        <collection property="store" ofType="store">
+            <id property="storeId" column="store_id"></id>
+            <result property="userId" column="user_id"></result>
+            <result property="storeName" column="store_name"></result>
+            <result property="storeImage" column="store_image"></result>
+            <result property="storeIntroduce" column="store_introduce"></result>
+            <result property="saleQuantity" column="sale_quantity"></result>
+            <result property="fans" column="fans"></result>
+            <result property="credit" column="credit"></result>
+        </collection>
+    </resultMap>
+
+    <sql id="selectDefault">
+        select *
+        from `merchandise` order by `merchandise`.opera_time desc
+    </sql>
+
+    <select id="queryMerchandiseList" resultMap="merchandise">
+        <!--引用已定义的默认sql语句-->
+        <include refid="selectDefault"></include>
+    </select>
+
+    <select id="queryMerchandiseByMerchandiseNameOrMerchandiseInduce" resultMap="merchandise">
+        select *
+        from `merchandise`
+        <where>
+            merchandise_name like #{keyword}
+            or merchandise_name like #{keyword}
+        </where>
+        order by `merchandise`.opera_time desc
+    </select>
+
+    <select id="queryMerchandiseByMerchandiseName" resultMap="merchandise">
+        select *
+        from `merchandise`
+        <where>
+            merchandise_name like #{merchandiseName}
+        </where>
+        order by `merchandise`.opera_time desc
+    </select>
+
+    <select id="queryMerchandiseByMerchandiseIntroduce" resultMap="merchandise">
+        select *
+        from `merchandise`
+        <where>
+            merchandise_introduce like #{merchandiseIntroduce}
+        </where>
+        order by `merchandise`.opera_time desc
+    </select>
+
+    <select id="queryCountByStoreId" resultType="int">
+        select count(*) from merchandise
+        <where>store_id= #{storeId}</where>
+    </select>
+
+    <select id="findUserByStoreName" resultMap="merchandise">
+        select *
+        from `merchandise`
+        <where>merchandise_name like #{userName}</where>
+        order by `merchandise`.opera_time desc
+    </select>
+
+    <select id="findByMerchandiseId" resultMap="merchandise">
+        select *
+        from `merchandise`
+        left outer join `store` on `merchandise`.store_id = `store`.store_id
+        <where>merchandise_id = #{merchandiseId}</where>
+        order by `merchandise`.opera_time desc
+    </select>
+
+    <insert id="insertMerchandise" parameterType="merchandise" useGeneratedKeys="true" keyProperty="merchandiseId">
+        insert into `merchandise` (store_id, merchandise_name, merchandise_main_image, merchandise_particulars_image,
+                                   merchandise_introduce, merchandise_parameter, merchandise_specifications,
+                                   merchandise_price, merchandise_quantity, opera_time)
+        values (#{storeId}, #{merchandiseName}, #{merchandiseMainImage}, #{merchandiseParticularsImage},
+                #{merchandiseIntroduce}, #{merchandiseParameter}, #{merchandiseSpecifications}, #{merchandisePrice},
+                #{merchandiseQuantity}, #{operaTime})
+    </insert>
+
+    <!--根据商品id删除商品-->
+    <delete id="deleteMerchandiseByMerchandiseId" parameterType="int">
+        delete
+        from `merchandise`
+        where merchandise_id = #{merchandiseId}
+    </delete>
+
+    <update id="updateMerchandiseQuantityByMerchandiseId" parameterType="merchandise">
+        update `merchandise`
+        <set>
+            <if test="merchandiseQuantity !=null ">
+                merchandise_quantity= #{merchandiseQuantity},
+            </if>
+            <if test="operaTime !=null and operaTime !='' ">
+                opera_time= #{operaTime}
+            </if>
+        </set>
+        <where>
+            merchandise_id= #{merchandiseId}
+        </where>
+    </update>
+
+    <!--更新商品信息-->
+    <update id="updateMerchandiseByMerchandiseId" parameterType="merchandise">
+        update `merchandise`
+        <set>
+            <if test="merchandiseName !=null and merchandiseName !='' ">
+                merchandise_name=#{merchandiseName},
+            </if>
+            <if test="merchandiseMainImage !=null and merchandiseMainImage !='' ">
+                merchandise_main_image=#{merchandiseMainImage},
+            </if>
+            <if test="merchandiseParticularsImage !=null and merchandiseParticularsImage !='' ">
+                merchandise_particulars_image=#{merchandiseParticularsImage},
+            </if>
+            <if test="merchandiseIntroduce !=null and merchandiseIntroduce !='' ">
+                merchandise_introduce=#{merchandiseIntroduce},
+            </if>
+            <if test="merchandiseParameter !=null and merchandiseParameter !='' ">
+                merchandise_parameter=#{merchandiseParameter},
+            </if>
+            <if test="merchandiseSpecifications !=null and merchandiseSpecifications !='' ">
+                merchandise_specifications=#{merchandiseSpecifications},
+            </if>
+            <if test="merchandisePrice !=null and merchandisePrice !='' ">
+                merchandise_price=#{merchandisePrice},
+            </if>
+            <if test="merchandiseQuantity !=null and merchandiseQuantity !='' ">
+                merchandise_quantity=#{merchandiseQuantity},
+            </if>
+            <if test="merchandiseState !=null and merchandiseState !='' ">
+                merchandise_state=#{merchandiseState},
+            </if>
+            <if test="operaTime !=null and operaTime !='' ">
+                opera_time= #{operaTime}
+            </if>
+        </set>
+        <where>
+            merchandise_id= #{merchandiseId}
+        </where>
+    </update>
+
+
+</mapper>

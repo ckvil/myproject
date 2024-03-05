@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.jxnu.mapper.CollectMerchandiseMapper">
+
+    <resultMap id="collectMerchandise" type="collectMerchandise">
+        <id property="collectId" column="collect_id"></id>
+        <id property="merchandiseId" column="merchandise_id"></id>
+        <id property="collectTime" column="collect_time"></id>
+        <collection property="merchandise" ofType="merchandise">
+            <id property="merchandiseId" column="merchandise_id"></id>
+            <result property="storeId" column="store_id"></result>
+            <result property="merchandiseName" column="merchandise_name"></result>
+            <result property="merchandiseMainImage" column="merchandise_main_image"></result>
+            <result property="merchandiseParticularsImage" column="merchandise_particulars_image"></result>
+            <result property="merchandiseIntroduce" column="merchandise_introduce"></result>
+            <result property="merchandiseParameter" column="merchandise_parameter"></result>
+            <result property="merchandiseSpecifications" column="merchandise_specifications"></result>
+            <result property="merchandisePrice" column="merchandise_price"></result>
+            <result property="merchandiseQuantity" column="merchandise_quantity"></result>
+            <result property="merchandiseState" column="merchandise_state"></result>
+            <result property="operaTime" column="opera_time"></result>
+        </collection>
+    </resultMap>
+
+    <sql id="selectDefault">
+        select *
+        from `collect_merchandise`
+        order by `collect_merchandise`.collect_time desc
+    </sql>
+
+    <select id="findCollectMerchandise" resultMap="collectMerchandise">
+        select *
+        from `collect_merchandise`
+        <where>
+            collect_id = #{collectId} and merchandise_id = #{merchandiseId}
+        </where>
+        order by collect_time desc
+    </select>
+
+    <insert id="insertCollectMerchandise" parameterType="collectMerchandise">
+        insert into `collect_merchandise` (collect_id, merchandise_id, collect_time)
+        values (#{collectId}, #{merchandiseId}, #{collectTime})
+    </insert>
+
+    <delete id="deleteCollectMerchandise" parameterType="collectMerchandise">
+        delete
+        from `collect_merchandise`
+        <where>
+            collect_id = #{collectId} and merchandise_id = #{merchandiseId}
+        </where>
+    </delete>
+
+
+</mapper>

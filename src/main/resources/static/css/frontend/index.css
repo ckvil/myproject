@@ -1,0 +1,35 @@
+
+
+span.btn{
+    margin: auto;
+    height: 50px;
+    line-height: 40px;
+    border-width: 1px 0 1px 0 ;
+}
+.fileSort{
+    font-size: 5px;
+
+    border-width: 0px 1px 0px 0px;
+    border-radius: 0px;
+    outline: none;
+}
+.fileSort:last-of-type{
+    border-width: 0px;
+}
+.fileSort.active{
+    color: #7c8089;
+    outline: none;
+}
+.file{
+    font-size: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-style: dashed;
+    border-width: 0 0 1px 0;
+    border-color: #9d9d9d;
+}
+
+.file:last-child{
+    border-width: 0;
+}

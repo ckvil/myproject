@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>校园二手交易平台</title>
+
+    <link href="/bootstrap-3.4.1-dist/css/bootstrap.css" rel="stylesheet">
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+    <link href="css/frontend/index.css" rel="stylesheet">
+    <link href="css/top.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+<body>
+<!--第一行 图片-->
+<div class="row">
+    <img src="" class="img-responsive">
+</div>
+
+<!--第二行 导航条-->
+<div class="row">
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <nav class="title btn" id="title">
+                <img class="nav" id="indexImg" src="../../image/file.webp">
+                <span id="indexTitle">校园二手</span>
+            </nav>
+            <span class="sr-only">校园二手交易平台</span>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/html/topnav/nav1.html">应用社区</a></li>
+                <li><a href="#">会员VIP</a></li>
+                <li><a href="#">app下载</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">更多<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">用户使用指南</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">22</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">33</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/html/upload/fileUpload.html">文件上传</a></li>
+                <li>
+                    <a type="button" class="btn btn-lg" id="username-login" data-toggle="modal" data-target="#myModal">登录</a>
+                    <!--弹窗登录界面-->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="display: inline-block; width: 400px">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                            style="width: 30px; height: 30px; border: #bcbcbc 1px solid; border-radius: 15px">
+                                        <span aria-hidden="true" style="font-size: 30px">&times;</span></button>
+
+                                </div>
+                                <div class="modal-body">
+                                    <div id="login-register">
+                                        <section class="signin popup-in" style="padding: 0">
+                                            <div class="container" style="width: revert">
+
+                                                <div class="sign-content popup-in-content">
+                                                    <div class="popup-in-txt">
+                                                        <h3 style="text-align: center">登 录</h3>
+
+                                                        <div class="row">
+                                                            <div class="col-sm-1"></div>
+                                                            <div class="col-sm-10">
+                                                                <div class="signin-form">
+
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control"
+                                                                               id="name" placeholder="请输入用户名"
+                                                                               style="margin-top: 10px">
+                                                                        <span id="nameMsg"></span>
+                                                                    </div><!--/.form-group -->
+                                                                    <div class="form-group">
+                                                                        <input type="password" class="form-control"
+                                                                               id="pwd" placeholder="请输入密码">
+                                                                        <span id="pwdMsg"></span>
+                                                                    </div><!--/.form-group -->
+                                                                    <div class="form-group">
+
+                                                                        <input type="text" id="j_captcha"
+                                                                               class="form-control" placeholder="验证码"
+                                                                               style="width:80px;float: left;">
+
+                                                                        <img id="captcha_img" alt="点击更换" title="点击更换"
+                                                                             onclick="changeVerifyCode(this)"
+                                                                             src="/Kaptcha" style="margin-top: 10px"/>
+
+                                                                    </div><!--/.form-group -->
+
+                                                                </div><!--/.signin-form -->
+                                                            </div><!--/.col -->
+                                                        </div><!--/.row -->
+
+                                                        <div class="row">
+                                                            <div class="col-sm-1"></div>
+                                                            <div class="col-sm-10">
+                                                                <div class="signin-password">
+                                                                    <div class="awesome-checkbox-list">
+
+                                                                        <input class="styled-checkbox"
+                                                                               id="styled-checkbox-2" type="checkbox"
+                                                                               value="value2"
+                                                                               style="transform: scale(1.5)">
+                                                                        <label for="styled-checkbox-2">记住密码</label>
+
+                                                                        <a class="navbar-right" href="#"
+                                                                           style="margin-right: 0">忘记密码 ?</a>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-sm-2"></div>
+                                                            <div class="col-sm-8">
+                                                                <div class="signin-footer">
+                                                                    <button type="button"
+                                                                            class="col-sm-12 btn btn-success"
+                                                                            id="submit" style="margin: 20px 0 20px 0">
+                                                                        登 录
+                                                                    </button>
+                                                                    <p>
+                                                                        <a id="register" class="btn col-sm-12">还没有账号?注册</a>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">我的<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a type="button" class="btn" href="../../html/user/index.html">个人中心</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a type="button" class="btn" href="#">我的账户</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a type="button" class="btn" href="#">帮助中心</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a type="button" class="btn" id="loginout">退出登录</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<!--第三行 搜索行-->
+
+<div class="col-xs-11">
+    <div class="navbar-right">
+        <form class="navbar-form" id="search-form">
+            <div class="form-group">
+                <input type="text" class="form-control" id="search" placeholder="请输入关键字">
+            </div>
+            <button type="submit" id="search-submit" class="btn btn-default">搜索</button>
+        </form>
+    </div>
+</div>
+
+
+<!--第四行 主要内容-->
+<div class="row">
+    <!--左侧导航栏-->
+    <div class="navbar-left col-xs-2 " id="leftnav">
+
+    </div>
+    <!--中间主体内容-->
+    <div class="container col-xs-9" style="border: 1px solid #c0c2c8;">
+
+        <!-- 左侧轮播图 -->
+        <div id="carousel-example-generic" class="col-xs-5 carousel slide" data-ride="carousel" style="margin: 10px; ">
+            <!--Indicators-->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+
+            <!--Wrapper for slides-->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="image/图片/眼镜/爱淘宝pc-搜你喜欢/pic_001.jpg" alt="...">
+                    <div class="carousel-caption">
+                        眼镜pic_001.jpg
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="image/图片/眼镜/爱淘宝pc-搜你喜欢/pic_002.jpg" alt="...">
+                    <div class="carousel-caption">
+                        眼镜pic_002.jpg
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="image/图片/眼镜/爱淘宝pc-搜你喜欢/pic_003.jpg" alt="...">
+                    <div class="carousel-caption">
+                        眼镜pic_003.jpg
+                    </div>
+                </div>
+            </div>
+            <!-- Controls -->
+            <a class="left carousel-control img-rounded" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control img-rounded" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+        <!-- 右侧商品详情 -->
+        <div class="col-xs-6" style="margin: 10px; ">
+            <!-- 商品介绍 -->
+            <span class="row" style="font-size: 20px; white-space: normal;">全新明月眼镜官方旗舰PMC高透光超薄近视1.60网上配镜1.71眼镜片2片</span>
+            <!-- 商品价格 -->
+            <span class="row" style="font-size: 15px; color: red;">¥158.6</span>
+
+
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+    <!--右侧-->
+</div>
+
+</body>
+
+
+<script type="text/javascript">
+    $("#pagination").jqPaginator({
+        totalPages: 100,
+        visiblePages: 10,
+        currentPage: 1,
+        first: '<li class="first"><a href="javascript:void(0);">首页<\/a><\/li>',
+        prev: '<li class="prev"><a href="javascript:void(0);">前一页<\/a><\/li>',
+        next: '<li class="next"><a href="javascript:void(0);">后一页<\/a><\/li>',
+        last: '<li class="last"><a href="javascript:void(0);">尾页<\/a><\/li>',
+        page: '<li class="page"><a href="javascript:void(0);">{{page}}<\/a><\/li>',
+        onPageChange: function (n) {
+            $("#file-content").html(n)
+        }
+    });
+</script>
+</body>
+</html>

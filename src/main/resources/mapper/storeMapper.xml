@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.jxnu.mapper.StoreMapper">
+
+    <resultMap id="store" type="store">
+        <id property="storeId" column="store_id"></id>
+        <result property="userId" column="user_id"></result>
+        <result property="storeName" column="store_name"></result>
+        <result property="storeImage" column="store_image"></result>
+        <result property="storeIntroduce" column="store_introduce"></result>
+        <result property="saleQuantity" column="sale_quantity"></result>
+        <result property="fans" column="fans"></result>
+        <result property="credit" column="credit"></result>
+        <collection property="merchandises" ofType="merchandise">
+            <id property="merchandiseId" column="merchandise_id"></id>
+            <result property="storeId" column="store_id"></result>
+            <result property="merchandiseName" column="merchandise_name"></result>
+            <result property="merchandiseMainImage" column="merchandise_main_image"></result>
+            <result property="merchandiseParticularsImage" column="merchandise_particulars_image"></result>
+            <result property="merchandiseIntroduce" column="merchandise_introduce"></result>
+            <result property="merchandiseParameter" column="merchandise_parameter"></result>
+            <result property="merchandiseSpecifications" column="merchandise_specifications"></result>
+            <result property="merchandisePrice" column="merchandise_price"></result>
+            <result property="merchandiseQuantity" column="merchandise_quantity"></result>
+            <result property="merchandiseState" column="merchandise_state"></result>
+            <result property="operaTime" column="opera_time"></result>
+        </collection>
+        <collection property="user" ofType="user">
+            <id property="userId" column="user_id"></id>
+            <result property="userName" column="user_name"></result>
+            <result property="password" column="password"></result>
+            <result property="sex" column="sex"></result>
+            <result property="birthday" column="birthday"></result>
+            <result property="email" column="email"></result>
+            <result property="telephone" column="telephone"></result>
+            <result property="introduce" column="introduce"></result>
+            <result property="state" column="state"></result>
+        </collection>
+    </resultMap>
+
+    <sql id="selectDefault">
+        select *
+        from `store`
+    </sql>
+
+    <select id="queryStoreList" resultMap="store">
+        <!--引用已定义的默认sql语句-->
+        <include refid="selectDefault"></include>
+    </select>
+
+    <select id="findByStoreId" resultMap="store">
+        <!--引用已定义的默认sql语句-->
+        <include refid="selectDefault"></include>
+        left outer join `merchandise` on `store`.store_id = `merchandise`.store_id
+        <where>`store`.store_id = #{storeId}</where>
+    </select>
+
+    <select id="findByStoreName" resultMap="store">
+        <!--引用已定义的默认sql语句-->
+        <include refid="selectDefault"></include>
+        <where>store_name = #{storeName}</where>
+    </select>
+
+    <insert id="insertStore" parameterType="store">
+        insert into `store` (user_id, store_name, store_image, store_introduce)
+        values (#{userId},#{storeName},#{storeImage},#{storeIntroduce})
+    </insert>
+
+    <select id="findByUserId" resultMap="store">
+        <!--引用已定义的默认sql语句-->
+        <include refid="selectDefault"></include>
+        left outer join `merchandise` on `store`.store_id = `merchandise`.store_id
+        <where>`store`.user_id = #{userId}</where>
+    </select>
+
+</mapper>

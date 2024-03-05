@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>付款</title>
+
+    <link href="/bootstrap-3.4.1-dist/css/bootstrap.css" rel="stylesheet">
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/bootstrap-3.4.1-dist/js/bootstrap.js"></script>
+
+</head>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .table > tbody > tr > td {
+        border: none;
+    }
+
+    td input, td select {
+        width: 200px;
+    }
+
+</style>
+
+<body>
+
+<div class="col-xs-10 container"
+     style="margin: 20px 0 0 20px; padding: 50px 0;height: 500px; border: solid 1px #8c8c8c; ">
+
+    <div class="col-xs-1"></div>
+
+    <div class="col-xs-8" style="line-height: 50px; ">
+
+        <div class="row form-group">
+            <label>选择付款方式:</label>
+            <div class="row">
+                <div class="col-xs-8" id="payMethod">
+                    <div class="col-xs-4">
+                        <input type="radio" name="paymentMethod" value="微信" id="weChat">
+                        <label for="weChat">微信</label>
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="radio" name="paymentMethod" value="支付宝" id="airPay">
+                        <label for="airPay">支付宝</label>
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="radio" name="paymentMethod" value="银行卡" id="bankCard">
+                        <label for="bankCard">银行卡</label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-xs-2"></div>
+            <button type="submit" class="btn btn-default" id="submit" style="margin: 20px; background-color: #3e8f3e; ">确认购买</button>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+<script type="text/javascript" src="/js/purchase/paymentShoppingCar.js" charset="UTF-8"></script>
+
+</html>

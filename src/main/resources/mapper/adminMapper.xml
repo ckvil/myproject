@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.jxnu.mapper.AdminMapper">
+
+    <resultMap id="admin" type="admin">
+        <id property="adminId" column="admin_id"></id>
+        <result property="adminName" column="admin_name"></result>
+        <result property="password" column="password"></result>
+        <result property="sex" column="sex"></result>
+        <result property="birthday" column="birthday"></result>
+        <result property="telephone" column="telephone"></result>
+    </resultMap>
+
+    <sql id="selectDefault">
+        select *
+        from `admin`
+    </sql>
+
+    <select id="queryAdminList" resultMap="admin">
+        <!--引用已定义的默认sql语句-->
+        <include refid="selectDefault"></include>
+        <where>user_name= #{userName} and password= #{password}</where>
+    </select>
+
+    <select id="findAdmin" resultMap="admin">
+        <!--引用已定义的默认sql语句-->
+        <include refid="selectDefault"></include>
+        <where>admin_name= #{adminName} and password= #{password}</where>
+    </select>
+
+    <select id="findByAdminId" resultMap="admin" parameterType="int">
+        select *
+        from `admin`
+        where admin_id = #{adminId}
+    </select>
+
+    <select id="queryAdminCount" resultType="int">
+        select count(*) cnt
+        from `admin`
+    </select>
+
+    <!--更新管理员账户密码-->
+    <update id="updatePassword" parameterType="admin">
+        update `admin`
+        set password= #{password}
+        where admin_name = #{adminName}
+    </update>
+
+
+    <!--更新管理员信息-->
+    <update id="updateAdmin" parameterType="admin">
+        update `admin`
+        <set>
+            <if test="adminName !=null and adminName !='' ">
+                admin_name=#{adminName},
+            </if>
+            <if test="sex !=null and sex !='' ">
+                sex=#{sex},
+            </if>
+            <if test="birthday !=null and birthday !='' ">
+                birthday=#{birthday},
+            </if>
+            <if test="telephone !=null and telephone !='' ">
+                telephone=#{telephone},
+            </if>
+        </set>
+        <where>
+            admin_id = #{adminId}
+        </where>
+    </update>
+
+    <update id="updateAdminState" parameterType="admin">
+        update `admin`
+        set state= #{state}
+        where admin_id = #{adminId}
+    </update>
+
+    <delete id="deleteAdmin" parameterType="admin">
+        delete
+        from `admin`
+        where admin_id = #{adminId}
+    </delete>
+
+</mapper>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.jxnu.mapper.UserMapper">
+
+    <resultMap id="user" type="user">
+        <id property="userId" column="user_id"></id>
+        <result property="userName" column="user_name"></result>
+        <result property="password" column="password"></result>
+        <result property="sex" column="sex"></result>
+        <result property="birthday" column="birthday"></result>
+        <result property="email" column="email"></result>
+        <result property="telephone" column="telephone"></result>
+        <result property="introduce" column="introduce"></result>
+        <result property="state" column="state"></result>
+    </resultMap>
+
+    <sql id="selectDefault">
+        select *
+        from `user`
+    </sql>
+
+    <select id="queryUserList" resultMap="user">
+        <!--引用已定义的默认sql语句-->
+        <include refid="selectDefault"></include>
+    </select>
+
+    <select id="findUser" resultMap="user">
+        <!--引用已定义的默认sql语句-->
+        <include refid="selectDefault"></include>
+        <where>user_name= #{userName} and password= #{password}</where>
+    </select>
+
+    <!--根据id查询-->
+    <select id="findByUserId" resultMap="user">
+        <!--引用已定义的默认sql语句-->
+        <include refid="selectDefault"></include>
+        <where>user_id= #{userId}</where>
+    </select>
+
+    <!--使用了resultMap属性就不要resultType属性了-->
+    <select id="findUserByUserName" resultMap="user">
+        <include refid="selectDefault"></include>
+        <where>user_name = #{userName}</where>
+    </select>
+
+    <select id="findUserByEmail" resultMap="user">
+        <include refid="selectDefault"></include>
+        <where>email = #{email}</where>
+    </select>
+
+    <!--保存用户-->
+    <insert id="insertUser" parameterType="user">
+        insert into `user` (user_name, password, sex, birthday, telephone, email)
+        values (#{userName}, #{password}, #{sex}, #{birthday}, #{telephone}, #{email})
+    </insert>
+
+    <!--根据id删除用户-->
+    <delete id="deleteById" parameterType="int">
+        delete
+        from `user`
+        where user_id = #{userId}
+    </delete>
+
+    <!--更新用户密码-->
+    <update id="updatePassword" parameterType="user">
+        update user
+        set password= #{password}
+        <where>
+            user_id = #{userId}
+        </where>
+    </update>
+
+    <!--查找用户密码-->
+    <select id="findPasswordByUserId" parameterType="int" resultType="String">
+        select password
+        from `user`
+        <where>
+            user_id = #{userId}
+        </where>
+    </select>
+
+    <!--更新用户信息-->
+    <update id="updateUser" parameterType="user">
+        update `user`
+        <set>
+            <if test="userName !=null and userName !='' ">
+                user_name=#{userName},
+            </if>
+            <if test="sex !=null and sex !='' ">
+                sex=#{sex},
+            </if>
+            <if test="birthday !=null and birthday !='' ">
+                birthday=#{birthday},
+            </if>
+            <if test="email !=null and email !='' ">
+                email=#{email},
+            </if>
+            <if test="telephone !=null and telephone !='' ">
+                telephone=#{telephone},
+            </if>
+            <if test="introduce !=null and introduce !='' ">
+                introduce=#{introduce},
+            </if>
+        </set>
+        <where>
+            user_id = #{userId}
+        </where>
+    </update>
+
+    <update id="updateUserState" parameterType="user">
+        update `user`
+        <set>
+            <if test="state != '' and state !=null">
+                state= #{state}
+            </if>
+        </set>
+        <where>
+            user_id= #{userId}
+        </where>
+    </update>
+
+</mapper>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.jxnu.mapper.OrderMapper">
+
+    <resultMap id="order" type="order">
+        <id property="orderId" column="order_id"></id>
+        <result property="userId" column="user_id"></result>
+        <result property="merchandiseId" column="merchandise_id"></result>
+        <result property="orderMerchandiseQuantity" column="order_merchandise_quantity"></result>
+        <result property="merchandiseSpecifications" column="merchandise_specifications"></result>
+        <result property="orderTime" column="order_time"></result>
+        <result property="consigneeName" column="consignee_name"></result>
+        <result property="consigneeAddr" column="consignee_addr"></result>
+        <result property="consigneeTelephone" column="consignee_telephone"></result>
+        <result property="consigneeRemark" column="consignee_remark"></result>
+        <result property="consigneePostalCode" column="consignee_postal_code"></result>
+        <result property="orderState" column="order_state"></result>
+        <collection property="merchandise" ofType="merchandise">
+            <id property="merchandiseId" column="merchandise_id"></id>
+            <result property="storeId" column="store_id"></result>
+            <result property="merchandiseName" column="merchandise_name"></result>
+            <result property="merchandiseMainImage" column="merchandise_main_image"></result>
+            <result property="merchandiseParticularsImage" column="merchandise_particulars_image"></result>
+            <result property="merchandiseIntroduce" column="merchandise_introduce"></result>
+            <result property="merchandiseParameter" column="merchandise_parameter"></result>
+            <result property="merchandiseSpecifications" column="merchandise_specifications"></result>
+            <result property="merchandisePrice" column="merchandise_price"></result>
+            <result property="merchandiseQuantity" column="merchandise_quantity"></result>
+            <result property="merchandiseState" column="merchandise_state"></result>
+            <result property="operaTime" column="order_time"></result>
+        </collection>
+        <collection property="user" ofType="user">
+            <id property="userId" column="user_id"></id>
+            <result property="userName" column="user_name"></result>
+            <result property="password" column="password"></result>
+            <result property="sex" column="sex"></result>
+            <result property="birthday" column="birthday"></result>
+            <result property="email" column="email"></result>
+            <result property="telephone" column="telephone"></result>
+            <result property="introduce" column="introduce"></result>
+            <result property="state" column="state"></result>
+        </collection>
+    </resultMap>
+
+    <sql id="selectDefault">
+        select *
+        from `order`
+        order by `order`.order_time desc
+    </sql>
+
+    <select id="queryOrderList" resultMap="order">
+        <!--引用已定义的默认sql语句-->
+        <include refid="selectDefault"></include>
+    </select>
+
+    <select id="queryUserOrder" resultMap="order" parameterType="order">
+        select *
+        from `order`
+        left outer join `merchandise` on `order`.merchandise_id = merchandise.merchandise_id
+        <where>user_id= #{userId}
+            <if test="orderState !=null and orderState !='' ">
+                and order_state=#{orderState}
+            </if>
+            <if test="orderState ==null or orderState =='' ">
+                and order_state not like '%-已锁定'
+            </if>
+        </where>
+        order by `order`.order_time desc
+    </select>
+
+    <select id="findOrderByStateAndMerchandiseName" resultMap="order">
+        select *
+        from `order`
+        left outer join `merchandise` on `order`.merchandise_id = merchandise.merchandise_id
+        <where>`order`.user_id= #{param1} and `merchandise`.merchandise_name like #{param3}
+            <if test="param2 !=null and param2 !='' ">
+                and `order`.order_state= #{param2}
+            </if>
+        </where>
+        order by `order`.order_time desc
+    </select>
+
+    <select id="findOrderByStateAndMerchandiseIntroduce" resultMap="order">
+        select *
+        from `order`
+        left outer join `merchandise` on `order`.merchandise_id = merchandise.merchandise_id
+        <where>`order`.user_id= #{param1} and `merchandise`.merchandise_introduce like #{param3}
+            <if test="param2 !=null and param2 !='' ">
+                and `order`.order_state= #{param2}
+            </if>
+        </where>
+        order by `order`.order_time desc
+    </select>
+
+    <select id="findOrderByOrderId" resultMap="order">
+        select *
+        from `order`
+        <where>order_id= #{orderId}</where>
+        order by `order`.order_time desc
+    </select>
+
+    <select id="findOrderByMerchandiseId" resultMap="order">
+        select *
+        from `order`
+        <where>merchandise_id= #{merchandiseId}</where>
+        order by `order`.order_time desc
+    </select>
+
+    <insert id="insertOrder" parameterType="order" useGeneratedKeys="true" keyProperty="orderId">
+        insert into `order` (user_id, merchandise_id, order_merchandise_quantity, merchandise_specifications,
+                             order_time,
+                             consignee_name, consignee_addr, consignee_telephone, consignee_remark,
+                             consignee_postal_code,
+                             order_state)
+        values (#{userId}, #{merchandiseId}, #{orderMerchandiseQuantity}, #{merchandiseSpecifications}, #{orderTime},
+                #{consigneeName}, #{consigneeAddr}, #{consigneeTelephone}, #{consigneeRemark}, #{consigneePostalCode},
+                #{orderState})
+    </insert>
+
+    <update id="updateOrder" parameterType="order">
+        update `order`
+        <set>
+            <if test="orderMerchandiseQuantity !=null and orderMerchandiseQuantity !='' ">
+                order_merchandise_quantity=#{orderMerchandiseQuantity},
+            </if>
+            <if test="merchandiseSpecifications !=null and merchandiseSpecifications !='' ">
+                merchandise_specifications=#{merchandiseSpecifications},
+            </if>
+            <if test="orderTime !=null and orderTime !='' ">
+                order_time=#{orderTime},
+            </if>
+            <if test="consigneeName !=null and consigneeName !='' ">
+                consignee_name=#{consigneeName},
+            </if>
+            <if test="consigneeAddr !=null and consigneeAddr !='' ">
+                consignee_addr=#{consigneeAddr},
+            </if>
+            <if test="consigneeTelephone !=null and consigneeTelephone !='' ">
+                consignee_telephone=#{consigneeTelephone},
+            </if>
+            <if test="consigneeRemark !=null and consigneeRemark !='' ">
+                consignee_remark=#{consigneeRemark},
+            </if>
+            <if test="consigneePostalCode !=null and consigneePostalCode !='' ">
+                consignee_postal_code=#{consigneePostalCode},
+            </if>
+            <if test="orderState !=null and orderState !='' ">
+                order_state=#{orderState},
+            </if>
+        </set>
+        <where>
+            order_id = #{orderId}
+        </where>
+    </update>
+
+
+</mapper>
